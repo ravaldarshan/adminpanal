@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,20 +13,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/demo', function () {
+Route::get('/demo', function(){
     return view('admin_template.index');
+ });
+
+//admin routes
+Route::middleware('auth')->prefix('adminpanal')->group(function () {
+    Route::get('/', function() {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/', function () {
-    // return "fdbdsj";
-    return view('admin.index');
+//client route
+Route::get('/', function(){
+   return redirect()->route('login');
 });
 
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+require __DIR__.'/auth.php';

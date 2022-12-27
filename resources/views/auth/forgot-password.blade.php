@@ -28,39 +28,30 @@
               <div class="brand-logo">
                 <img src="{{asset('admin/images/logo.svg')}}" alt="logo">
               </div>
-              <h6 class="font-weight-light">Sign in to continue.</h6>
-              <form class="pt-3" method="POST" action="{{ route('login') }}">
-                @csrf
-                <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" name="email" placeholder="Username">
-                  @error('email')<span style="color: red">{{$message}}</span> @enderror
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password" placeholder="Password">
-                  @error('password')<span style="color: red">{{$message}}</span> @enderror
-                </div>
-                <div class="mt-3">
-                  <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
-                </div>
-                <div class="my-2 d-flex justify-content-between align-items-center">
-                  <div class="form-check">
-                    <label class="form-check-label text-muted">
-                      <input type="checkbox" id="remember_me" class="form-check-input">
-                      Keep me signed in
-                    </label>
-                  </div>
-                  <a href="{{ route('password.request') }}" class="auth-link text-black">Forgot password?</a>
-                </div>
-                @if(config('config.fb_login'))
-                    <div class="mb-2">
-                    <button type="button" class="btn btn-block btn-facebook auth-form-btn">
-                        <i class="ti-facebook mr-2"></i>Connect using facebook
-                    </button>
+              <div class="mb-4 text-sm text-gray-600">
+                {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to create new one.') }}
+            </div>
+              @if (session('status'))
+                  <span class=".text-success">{{session('status')}}</span>
+              @endif
+              <form class="pt-3" method="POST" action="{{ route('password.email') }}">
+                  @csrf
+                  <!-- Email Address -->
+                    <div class="form-group">
+                      <label class="form-check-label text-muted">Email </label>
+                      <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" name="email" placeholder="Email">
+                      @error('email')<span style="color: red">{{$message}}</span> @enderror
                     </div>
-                @endif
-                {{-- <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a href="{{route('register')}}" class="text-primary">Create</a>
-                </div> --}}
+                    <div class="mb-2">
+                    <button type="submit" class="btn btn-primary  btn-block">
+                      Email Password Reset Link
+                    </button>
+                  </div>
+                    <div class="mb-2">
+                    <a href="{{route('login')}}" class="btn btn-dark btn-block ">
+                      Back To Login 
+                    </a>
+                  </div>
               </form>
             </div>
           </div>
