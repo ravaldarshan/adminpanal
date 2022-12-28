@@ -153,13 +153,13 @@
                     @else 
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('dashboard')}}">
-                            <i class="icon-grid menu-icon"></i>
+                            <i class="mdi mdi-view-dashboard icon-sm pr-2"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
                     @endif 
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="" href="#ui-basic" aria-expanded="false"
+                        <a class="nav-link" data-toggle="" href="{{route('employees.index')}}" aria-expanded="false"
                             aria-controls="ui-basic">
                             <i class="mdi mdi-account icon-sm pr-2"></i>
                             <span class="menu-title">Employees</span>
@@ -180,8 +180,24 @@
                                         href="pages/ui-features/dropdowns.html">Manage Holidays</a></li>
                                 <li class="nav-item"> <a class="nav-link"
                                         href="pages/ui-features/typography.html">Manage Permissions</a></li>
+                                <li class="nav-item"> <a class="nav-link"
+                                        href="pages/ui-features/typography.html">Manage Salary</a></li>
                             </ul>
                         </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="" href="#ui-basic" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="mdi mdi-timetable icon-sm pr-2"></i>
+                            <span class="menu-title">Employees In/Out</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="" href="#ui-basic" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="mdi mdi-newspaper icon-sm pr-2"></i>
+                            <span class="menu-title">News</span>
+                        </a>
                     </li>
                     
                 </ul>
@@ -190,10 +206,6 @@
             <div class="main-panel">
                 <div class="content-wrapper">
                     @yield('content')
-                    <span><i class="mdi mdi-settings"></i>icone</span>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <i class="mdi mdi-table-row-plus-before"></i> mdi mdi-table-row-plus-before
-                    </div>
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
