@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Requests\employee;
 
 class EmployeesController extends Controller
 {
@@ -36,9 +37,12 @@ class EmployeesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(employee $request)
     {
-        //
+        dd('all done');
+    //    $request->validate();
+       $employee = User::create($request->all());
+        return view('employee.index')->with('Employee Are Add!');
     }
 
     /**
@@ -50,8 +54,9 @@ class EmployeesController extends Controller
     public function show($id)
     {
         //
-        $employees = User::where('id',$id)->get();
-        return view('employee.show',['employees'=>$employees]);
+        $employees = User::where('id',$id)->first();
+        dd($employees);
+        return view('employee.show')->with('employees',$employees);
     }
 
     /**
@@ -63,7 +68,7 @@ class EmployeesController extends Controller
     public function edit($id)
     {
         //
-        $employees = User::where('id',$id)->get();
+        $employees = User::where('id',$id)->first();
         return view('employee.edit',['employees'=>$employees]);
     }
 
@@ -90,7 +95,7 @@ class EmployeesController extends Controller
         //
         $employees = User::find($id)->delete();
         if($employees){
-            return view('employees')->with('message','Employes Has Beed Deleted.#'.' '.$id);
+            return redirect()->route('employees.index')->with('message','Employes Has Beed Deleted. '.'#'.$id);
         }
     }
 }
