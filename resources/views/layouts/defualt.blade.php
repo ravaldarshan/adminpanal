@@ -33,7 +33,7 @@
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                 <a class="navbar-brand brand-logo mr-5" href="index.html"><img
                         src="{{ asset('admin/images/logo.svg') }}" class="mr-2" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="index.html"><img
+                <a class="navbar-brand brand-logo-mini " href="index.html"><img class="p-2"
                         src="{{ asset('admin/images/logo-mini.svg') }}" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -144,7 +144,7 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     @if(auth()->user()->role_as == 1)
-                    <li class="nav-item">
+                    <li class="nav-item {{ Request::is('adminpanal') ? 'active' : '' }}">
                         <a class="nav-link" href="{{route('admin.dashboard')}}">
                             <i class="icon-grid menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
@@ -158,9 +158,8 @@
                         </a>
                     </li>
                     @endif 
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="" href="{{route('employees.index')}}" aria-expanded="false"
-                            aria-controls="ui-basic">
+                    <li class="nav-item {{ Request::is('adminpanal/employees') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{route('employees.index')}}">
                             <i class="mdi mdi-account icon-sm pr-2"></i>
                             <span class="menu-title">Employees</span>
                         </a>

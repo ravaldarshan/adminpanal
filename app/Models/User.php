@@ -65,9 +65,19 @@ class User extends Authenticatable
         //     return 'inten';
         //   }
     }
-    public function getrole()
+    public function geEmployeeRole()
     {
        return $this->role[$this->attributes['role_as']];
     }   
+    public function getrole(){
+        $role = [
+            '1' => 'Admin',
+            '2' => 'Hr',
+            '3' => 'Team Leader',
+            '4' => 'Users',
+            '5' => 'Intern',
+        ];
+        return $role;
+    }
 
 }

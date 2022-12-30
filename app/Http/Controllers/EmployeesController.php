@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\employee;
+use Hamcrest\Arrays\IsArray;
 
 class EmployeesController extends Controller
 {
@@ -15,9 +16,16 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        $employees =User::where('role_as','!=','1')->paginate(5);
+        $role = [
+            '1' => 'Admin',
+            '2' => 'Hr',
+            '3' => 'Team Leader',
+            '4' => 'Users',
+            '5' => 'Intern',
+        ];
+        $employees = User::where('role_as','!=','1')->paginate(5);
 
-        return view('employee.index', ['employees'=>$employees]);
+        return view('employee.index', ['employees'=>$employees, 'role' => $role]);
     }
 
     /**
@@ -28,7 +36,7 @@ class EmployeesController extends Controller
     public function create()
     {
         //
-        return view('employee.index');
+        return view('employee.create');
     }
 
     /**
@@ -41,7 +49,7 @@ class EmployeesController extends Controller
     {
         dd('all done');
     //    $request->validate();
-       $employee = User::create($request->all());
+        $employee = User::create($request->all());
         return view('employee.index')->with('Employee Are Add!');
     }
 
