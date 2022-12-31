@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\employee;
 use Hamcrest\Arrays\IsArray;
+use App\Http\Controllers\Controller;
 
 class EmployeesController extends Controller
 {
@@ -25,7 +26,7 @@ class EmployeesController extends Controller
         ];
         $employees = User::where('role_as','!=','1')->paginate(5);
 
-        return view('employee.index', ['employees'=>$employees, 'role' => $role]);
+        return view('admin.employee.index', ['employees'=>$employees, 'role' => $role]);
     }
 
     /**
@@ -36,7 +37,7 @@ class EmployeesController extends Controller
     public function create()
     {
         //
-        return view('employee.create');
+        return view('admin.employee.create');
     }
 
     /**
@@ -50,7 +51,7 @@ class EmployeesController extends Controller
         dd('all done');
     //    $request->validate();
         $employee = User::create($request->all());
-        return view('employee.index')->with('Employee Are Add!');
+        return view('admin.employee.index')->with('Employee Are Add!');
     }
 
     /**
@@ -63,8 +64,8 @@ class EmployeesController extends Controller
     {
         //
         $employees = User::where('id',$id)->first();
-        dd($employees);
-        return view('employee.show')->with('employees',$employees);
+        // dd($employees);
+        return view('admin.employee.show')->with('employee',$employees);
     }
 
     /**
@@ -77,7 +78,7 @@ class EmployeesController extends Controller
     {
         //
         $employees = User::where('id',$id)->first();
-        return view('employee.edit',['employees'=>$employees]);
+        return view('admin.employee.edit',['employees'=>$employees]);
     }
 
     /**

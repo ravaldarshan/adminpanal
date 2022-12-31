@@ -72,10 +72,8 @@
             </nav>
           </div>
             <!-- /Breadcrumb -->
-            {{-- {{dd($employees)}} --}}
           {{-- <a href="{{route('employees.index')}}"  type="button" class="btn btn-primary mb-2">Back To Home</a> --}}
-          @if(!empty($employees))
-          @foreach ($employees as $employee) 
+          @if($employee)
           <div class="row gutters-sm">
             <div class="col-md-4">
               <div class="card">
@@ -84,7 +82,7 @@
                     <img src="{{ asset('admin/images/faces').'/'.$employee->profile_pic}}" class="rounded-circle"  width="150" onerror=this.src="{{ asset('admin/images/faces/face.jpg')}}">
                     <div class="mt-3">
                       <h4>{{$employee->first_name.' '.$employee->last_name}}</h4>
-                      <p class="text-secondary mb-1">{{$employee->role_as}}</p>
+                      <p class="text-secondary mb-1">{{$employee->geEmployeeRole()}}</p>
                     </div>
                   </div>
                 </div>
@@ -286,7 +284,6 @@
               </div>
             </div>
           </div>
-          @endforeach
           @endif
         </div>
     </div>
