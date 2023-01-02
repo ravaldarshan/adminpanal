@@ -26,12 +26,16 @@ class employee extends FormRequest
     public function rules()
     {
         return [
-            'firs_tname' => ['string', 'max:255'],
+            'first_name' => ['string', 'max:255'],
             'last_name' => ['string', 'max:255'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'password'=> ['string', 'max:255'],
-            'gender'=> ['string', 'max:255'],
-            'imgage'=> ['string', 'max:255'],
+            'dob'=>['required'],
+            'role_as'=>['required'],
+            'contact'=>['required'],
+            'alt_contact'=>['required'],
+            'gender'=> ['required','in:male,female'],
+            'imgage'=> ['nullable','string', 'max:255'],
             'credits'=> ['string', 'max:255'],
             'salary'=> ['string', 'max:255'],
             'address'=> ['string', 'max:255'],

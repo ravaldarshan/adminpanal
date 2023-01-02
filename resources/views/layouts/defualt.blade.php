@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Skydash Admin</title>
+    <title>@yield('title')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('admin/vendors/feather/feather.css') }}">
@@ -106,7 +106,7 @@
                     </li>
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <img src="{{ asset('admin/images/faces').'/'.auth()->user()->profile_pic }}"  onerror=this.src="{{ asset('admin/images/faces/face.jpg')}}">
+                            <img src="{{ asset('profiles_pic').'/'.auth()->user()->profile_pic }}"  onerror=this.src="{{ asset('profiles_pic/face.jpg')}}">
                             <span class="dropdown-toggle">
                                 {{ucfirst(auth()->user()->first_name .' '.auth()->user()->last_name)}}
                             </span>
@@ -210,10 +210,8 @@
                 <!-- partial:partials/_footer.html -->
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.
-                            Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin
-                                template</a> from BootstrapDash. All rights reserved.</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © {{date('Y')}} <a href="{{route('employee.dashboard')}}">erp.Codelinkinfotech.com</a> </span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"><a href="{{route('admin.dashboard')}}">erp.Codelinkinfotech.com</a>
                             with <i class="ti-heart text-danger ml-1"></i></span>
                     </div>
                 </footer>

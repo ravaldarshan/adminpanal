@@ -1,8 +1,14 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\EmployeesController;
+use App\Http\Controllers\Admin\{
+    EmployeesController,
+    PolicyController
+};
+use App\Http\Controllers\{
+    Employeeclientside,
+    ProfileController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -25,11 +31,18 @@ Route::middleware('auth')->prefix('adminpanal')->group(function () {
     })->name('admin.dashboard');
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
     Route::resource('employees', EmployeesController::class);
-
+    Route::resource('policy', PolicyController::class);
+    
 });
 
+//clent route
+Route::middleware('auth')->prefix('employee')->group(function(){
+    Route::get('/', function() {
+        return view('employee.dashboard');
+    })->name('employee.dashboard');
+    Route::resource('employee', Employeeclientside::class);
+});
 //client route
 Route::get('/', function(){
    return redirect()->route('login');

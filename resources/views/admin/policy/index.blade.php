@@ -25,8 +25,8 @@
                             </form> --}}
                         </div>
                         <div class="text-right">
-                            <form action="{{ route('employees.create') }}">
-                                <button type="submit" class="btn btn-primary">Add Employee</button>
+                            <form action="{{ route('policy.create') }}">
+                                <button type="submit" class="btn btn-primary">Add Policy</button>
                             </form>
                         </div>
                 </div>
@@ -37,13 +37,6 @@
                             <span aria-hidden="true"><i class="mdi mdi-close-circle"></i></span>
                         </button>
                     </div>
-                @elseif(session('success'))
-                <div class="alert alert-success alert-dismissible fade show mt-2 mb-2" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true"><i class="mdi mdi-close-circle"></i></span>
-                    </button>
-                </div>
                 @endif
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -59,7 +52,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (!empty($employees))
+                            @if (false)
                                 @foreach ($employees as $key => $item)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
@@ -103,7 +96,7 @@
         </div>
     </div>
     <div class="mt-2 pr-3 float-right">
-        {{ $employees->links('pagination::bootstrap-4') }}
+        {{-- {{ $employees->links('pagination::bootstrap-4') }} --}}
     </div>
 @endsection
 @section('js')

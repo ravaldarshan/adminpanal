@@ -1,3 +1,4 @@
+@section('title', __('Employee'))
 @extends('layouts.defualt')
 @section('content')
 <div class="col-lg-12 grid-margin stretch-card">

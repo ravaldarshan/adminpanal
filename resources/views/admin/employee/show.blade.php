@@ -1,4 +1,5 @@
 @extends('layouts.defualt')
+@section('title', __('Employee'))
 @section('content')
 {{-- <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
@@ -79,7 +80,7 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="{{ asset('admin/images/faces').'/'.$employee->profile_pic}}" class="rounded-circle"  width="150" onerror=this.src="{{ asset('admin/images/faces/face.jpg')}}">
+                    <img src="{{ asset('profiles_pic').'/'.$employee->profile_pic}}" class="rounded-circle"  width="150" onerror=this.src="{{ asset('profiles_pic/face.jpg')}}">
                     <div class="mt-3">
                       <h4>{{$employee->first_name.' '.$employee->last_name}}</h4>
                       <p class="text-secondary mb-1">{{$employee->geEmployeeRole()}}</p>

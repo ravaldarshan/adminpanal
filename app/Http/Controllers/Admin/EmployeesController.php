@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Http\Requests\employee;
 use Hamcrest\Arrays\IsArray;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class EmployeesController extends Controller
 {
@@ -24,9 +25,9 @@ class EmployeesController extends Controller
             '4' => 'Users',
             '5' => 'Intern',
         ];
-        $employees = User::where('role_as','!=','1')->paginate(5);
+        $employees = User::where('role_as', '!=', '1')->paginate(5);
 
-        return view('admin.employee.index', ['employees'=>$employees, 'role' => $role]);
+        return view('admin.employee.index', ['employees' => $employees, 'role' => $role]);
     }
 
     /**
@@ -48,8 +49,8 @@ class EmployeesController extends Controller
      */
     public function store(employee $request)
     {
-        dd('all done');
-    //    $request->validate();
+        dd($request);
+        //    $request->validate();
         $employee = User::create($request->all());
         return view('admin.employee.index')->with('Employee Are Add!');
     }
@@ -63,9 +64,9 @@ class EmployeesController extends Controller
     public function show($id)
     {
         //
-        $employees = User::where('id',$id)->first();
+        $employees = User::where('id', $id)->first();
         // dd($employees);
-        return view('admin.employee.show')->with('employee',$employees);
+        return view('admin.employee.show')->with('employee', $employees);
     }
 
     /**
@@ -77,8 +78,8 @@ class EmployeesController extends Controller
     public function edit($id)
     {
         //
-        $employees = User::where('id',$id)->first();
-        return view('admin.employee.edit',['employees'=>$employees]);
+        $employees = User::where('id', $id)->first();
+        return view('admin.employee.edit', ['employees' => $employees]);
     }
 
     /**
@@ -88,9 +89,37 @@ class EmployeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(employee $request, $id)
     {
-        //
+        $employees = User::find($id);
+        $employees->first_name = $request->first_name;
+        $employees->last_name = $request->last_name;
+        $employees->role_as = $request->role_as;
+        $employees->contact = $request->contact;
+        $employees->alt_contact = $request->alt_contact;
+        $employees->email = $request->email;
+        $employees->gender = $request->gender;
+        $employees->address = $request->address;
+        $employees->salary = $request->salary;
+        $employees->dob = $request->dob;
+
+        //profile image update
+        if ($request->profile_pic != null) {
+
+            //delate alrady exist image
+            // Storage::disk('public')->delete('profiles/'.$employees->profile_pic);
+
+            //store image
+            // $path = Storage::putFile('profiles_pic', $request->file('profile_pic'));
+
+            $imageName = time().'.'.$request->profile_pic->getClientOriginalExtension();
+            $request->profile_pic->move(public_path('profiles_pic'), $imageName);
+            $employees->profile_pic = $imageName;
+        } else {
+            $employees->profile_pic = $request->old_imgage;
+        }
+        $employees->save();
+        return redirect('adminpanal/employees')->with('success', 'Employee Profile Has Beed Changed!');
     }
 
     /**
@@ -103,8 +132,8 @@ class EmployeesController extends Controller
     {
         //
         $employees = User::find($id)->delete();
-        if($employees){
-            return redirect()->route('employees.index')->with('message','Employes Has Beed Deleted. '.'#'.$id);
+        if ($employees) {
+            return redirect()->route('employees.index')->with('message', 'Employes Has Beed Deleted. ' . '#' . $id);
         }
     }
 }

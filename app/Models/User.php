@@ -50,21 +50,7 @@ class User extends Authenticatable
         '4' => 'Users',
         '5' => 'Intern',
     ];
-    protected function role_as(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => 'dfsd'.$value,
-        );
-        // if($value == '1'){
-        //     return 'admin';
-        //   }else if($value == '2'){
-        //     return 'hr';
-        //   }else if($value == '3'){
-        //       return 'user';
-        //   }else {
-        //     return 'inten';
-        //   }
-    }
+    
     public function geEmployeeRole()
     {
        return $this->role[$this->attributes['role_as']];
