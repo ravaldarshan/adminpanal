@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\policy;
 use Illuminate\Http\Request;
 
 class PolicyController extends Controller
@@ -15,8 +16,8 @@ class PolicyController extends Controller
     public function index()
     {
         //
-        // $employees = policy:where('role_as','!=','1')->paginate(5);
-        // return view('admin.employee.index', ['employees'=>$employees, 'role' => $role]);
+        $policys = policy::paginate(5);
+        return view('admin.policy.index', ['policys'=>$policys]);
     }
 
     /**

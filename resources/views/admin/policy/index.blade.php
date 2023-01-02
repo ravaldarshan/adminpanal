@@ -1,10 +1,10 @@
-@extends('layouts.defualt')
+@extends('layouts.app')
 @section('css')
     {{-- select input box js --}}
     <link rel="stylesheet" href="{{ asset('admin/vendors/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
 @endsection
-@section('title', __('Employee'))
+@section('title', __('Policy'))
 @section('content')
     <div class="col-lg-12  stretch-card">
         <div class="card">
@@ -12,7 +12,7 @@
                 
                 <div class="d-flex mb-2" style="justify-content: space-between;">
                     <div class="text-left">
-                            <h4 class="card-title">Employees</h4>
+                            <h4 class="card-title">Company Policys</h4>
                             {{-- <form action="{{ route('employees.index') }}" method="POST">
                                 <label>Filter</label>
                                 <select class="js-example-basic-multiple w-30 p-0" multiple="multiple">
@@ -43,43 +43,42 @@
                         <thead>
                             <tr>
                                 <th>Sr No.</th>
-                                <th>Employee Id</th>
-                                <th>Full Name</th>
-                                <th>Email</th>
-                                <th>Profile Pic</th>
-                                <th>Employee Role</th>
+                                <th>Policy Title</th>
+                                <th>Policy Description</th>
+                                <th>Policy Link</th>
+                                <th>Policy Image</th>
                                 <th colspan="3">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @if (false)
-                                @foreach ($employees as $key => $item)
+                            @if ($policys)
+                                @foreach ($policys as $key => $item)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->first_name . ' ' . $item->last_name }}</td>
-                                        <td>{{ $item->email }}</td>
-                                        @if ($item->profile_pic)
-                                            <td>{{ $item->profile_pic }}</td>
+                                        <td>{{ $item->policy_title}}</td>
+                                        <td>{{ $item->policy_desc }}</td>
+                                        <td><a href="{{$item->policy_link}}">{{$item->policy_link}}</a></td>
+                                        @if ($item->policy_image)
+                                            <td>{{ $item->policy_image }}</td>
                                         @else
                                             <td>No Image</td>
                                         @endif
-                                        <td>{{ $item->geEmployeeRole() }}</td>
-                                        <td><a href="{{ route('employees.show', $item->id) }}" style="padding-top: 12px;"
-                                                type="button" class="btn btn-primary btn-icon display-block"><i
-                                                    class="mdi mdi-eye"></i></a></td>
-                                        <td><a href="{{ route('employees.edit', $item->id) }}" style="padding-top: 12px;"
-                                                type="button" class="btn btn-success btn-icon"><i
-                                                    class="mdi mdi-table-edit"></i></a></td>
-                                        <td>
-                                            <form action="{{ route('employees.destroy', $item->id) }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-inverse-danger btn-icon"
-                                                    onclick="return confirm('Are you sure to delete this user?')"><i
-                                                        class="mdi mdi-delete-forever"></i></button>
-                                            </form>
-                                        </td>
+                                        <td><a href="{{ route('policy.show', $item->id) }}" style="padding-top: 12px;"
+                                            type="button" class="btn btn-outline-primary btn-fw btn-icon display-block"><i
+                                                class="mdi mdi-eye"></i></a></td>
+                                    <td><a href="{{ route('policy.edit', $item->id) }}" style="padding-top: 12px;"
+                                            type="button" class="btn btn-outline-success btn-fw btn-icon"><i
+                                                class="mdi mdi-table-edit"></i></a></td>
+                                    <td>
+                                        <form action="{{ route('policy.destroy', $item->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger btn-fw btn-icon"
+                                                onclick="return confirm('Are you sure to delete this user?')"><i
+                                                    class="mdi mdi-delete-forever"></i></button>
+                                        </form>
+                                    </td>
                                     </tr>
                                 @endforeach
                             @else
@@ -96,7 +95,7 @@
         </div>
     </div>
     <div class="mt-2 pr-3 float-right">
-        {{-- {{ $employees->links('pagination::bootstrap-4') }} --}}
+        {{ $policys->links('pagination::bootstrap-4') }}
     </div>
 @endsection
 @section('js')

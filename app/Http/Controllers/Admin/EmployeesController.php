@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Http\Requests\employee;
 use Hamcrest\Arrays\IsArray;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class EmployeesController extends Controller
@@ -47,12 +49,30 @@ class EmployeesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(employee $request)
+    public function store(Request $request)
     {
-        dd($request);
-        //    $request->validate();
-        $employee = User::create($request->all());
-        return view('admin.employee.index')->with('Employee Are Add!');
+        $request->validate([
+            'first_name' => ['string', 'max:255'],
+            'last_name' => ['string', 'max:255'],
+            'email' => ['email', 'max:255', Rule::unique(User::class)],
+            'role_as'=>['required'],
+            'gender'=> ['required','in:male,female'],
+            'salary'=> ['string', 'max:255'],
+            'password'=> ['string', 'max:255'],
+        ]);
+
+        $employees = new User;
+        $employees->first_name = $request->first_name;
+        $employees->last_name = $request->last_name;
+        $employees->role_as = $request->role_as;
+        $employees->email = $request->email;
+        $employees->gender = $request->gender;
+        $employees->salary = $request->salary;
+        $employees->password = Hash::make($request->password);
+        $employees->save();
+        // dd('fkfk');
+        
+        return redirect(route('employees.index'))->with('success','Employee Are Add!');
     }
 
     /**

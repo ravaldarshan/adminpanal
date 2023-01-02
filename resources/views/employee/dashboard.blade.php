@@ -1,4 +1,4 @@
-@extends('layouts.defualt')
+@extends('layouts.app')
 @section('title', __('Dashboard'))
 @section('content')
     <h1>{{auth()->user()->first_name}}</h1>

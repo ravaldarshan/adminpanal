@@ -1,4 +1,4 @@
-@extends('layouts.single_page')
+@extends('layoute')
 @section('title', __('Not Found'))
 @section('content')
 <div class="container-scroller">

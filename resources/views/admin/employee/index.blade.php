@@ -1,4 +1,4 @@
-@extends('layouts.defualt')
+@extends('layouts.app')
 @section('css')
     {{-- select input box js --}}
     <link rel="stylesheet" href="{{ asset('admin/vendors/select2/select2.min.css') }}">
@@ -26,7 +26,7 @@
                         </div>
                         <div class="text-right">
                             <form action="{{ route('employees.create') }}">
-                                <button type="submit" class="btn btn-primary">Add Employee</button>
+                                <button type="submit" class="btn btn-outline-primary btn-fw">Add Employee</button>
                             </form>
                         </div>
                 </div>
@@ -73,16 +73,16 @@
                                         @endif
                                         <td>{{ $item->geEmployeeRole() }}</td>
                                         <td><a href="{{ route('employees.show', $item->id) }}" style="padding-top: 12px;"
-                                                type="button" class="btn btn-primary btn-icon display-block"><i
+                                                type="button" class="btn btn-outline-primary btn-fw btn-icon display-block"><i
                                                     class="mdi mdi-eye"></i></a></td>
                                         <td><a href="{{ route('employees.edit', $item->id) }}" style="padding-top: 12px;"
-                                                type="button" class="btn btn-success btn-icon"><i
+                                                type="button" class="btn btn-outline-success btn-fw btn-icon"><i
                                                     class="mdi mdi-table-edit"></i></a></td>
                                         <td>
                                             <form action="{{ route('employees.destroy', $item->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-inverse-danger btn-icon"
+                                                <button type="submit" class="btn btn-outline-danger btn-fw btn-icon"
                                                     onclick="return confirm('Are you sure to delete this user?')"><i
                                                         class="mdi mdi-delete-forever"></i></button>
                                             </form>

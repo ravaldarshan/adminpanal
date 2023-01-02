@@ -1,11 +1,11 @@
-@extends('layouts.defualt')
+@extends('layouts.app')
 @section('title', __('Employee'))
 @section('css')
 
 @endsection
 @section('content')
+<!-- Breadcrumb -->
     <div class="col-lg-12">
-        <!-- Breadcrumb -->
         <nav aria-label="breadcrumb" class="main-breadcrumb ">
             <ol class="breadcrumb  border-0 bg-white">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">

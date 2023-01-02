@@ -29,15 +29,15 @@ class employee extends FormRequest
             'first_name' => ['string', 'max:255'],
             'last_name' => ['string', 'max:255'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+            'role_as'=>['required'],
+            'gender'=> ['required','in:male,female'],
+            'salary'=> ['string', 'max:255'],
             'password'=> ['string', 'max:255'],
             'dob'=>['required'],
-            'role_as'=>['required'],
             'contact'=>['required'],
             'alt_contact'=>['required'],
-            'gender'=> ['required','in:male,female'],
             'imgage'=> ['nullable','string', 'max:255'],
             'credits'=> ['string', 'max:255'],
-            'salary'=> ['string', 'max:255'],
             'address'=> ['string', 'max:255'],
         ];
     }
