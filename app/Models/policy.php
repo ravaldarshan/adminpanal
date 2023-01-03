@@ -9,4 +9,11 @@ class policy extends Model
 {
     use HasFactory;
     public $table = 'policy';
+
+    protected $fillable =[
+        'policy_title',
+        'policy_desc',
+        'policy_link',
+        'policy_image',
+    ];
 }

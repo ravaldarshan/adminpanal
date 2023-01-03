@@ -35,7 +35,7 @@
                     <li class="nav-item"> <a class="nav-link"
                             href="pages/ui-features/dropdowns.html">Manage Holidays</a></li>
                     <li class="nav-item"> <a class="nav-link"
-                            href="pages/ui-features/typography.html">Manage Permissions</a></li>
+                            href="{{route('permission.index')}}">Manage Permissions</a></li>
                     <li class="nav-item"> <a class="nav-link"
                             href="pages/ui-features/typography.html">Manage Salary</a></li>
                 </ul>

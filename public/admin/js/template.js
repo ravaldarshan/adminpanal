@@ -22,7 +22,8 @@
         }
       } else {
         //for other url
-        if (element.attr('href').indexOf(current) !== -1) {
+        console.log(element.attr('href').indexOf(current));
+        if (element.attr('href').indexOf(current) !== -1 && element.attr('href').indexOf(current) !== 22  ) {
           element.parents('.nav-item').last().addClass('active');
           if (element.parents('.sub-menu').length) {
             element.closest('.collapse').addClass('show');
@@ -35,16 +36,16 @@
       }
     }
 
-    // var current = location.pathname.split("/").slice(-1)[0].replace(/^\/|\/$/g, '');
-    // $('.nav li a', sidebar).each(function() {
-    //   var $this = $(this);
-    //   addActiveClass($this);
-    // })
+    var current = location.pathname.split("/").slice(-1)[0].replace(/^\/|\/$/g, '');
+    $('.nav li a', sidebar).each(function() {
+      var $this = $(this);
+      addActiveClass($this);
+    })
 
-    // $('.horizontal-menu .nav li a').each(function() {
-    //   var $this = $(this);
-    //   addActiveClass($this);
-    // })
+    $('.horizontal-menu .nav li a').each(function() {
+      var $this = $(this);
+      addActiveClass($this);
+    })
 
     //Close other submenu in sidebar on opening any
 

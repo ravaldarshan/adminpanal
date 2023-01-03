@@ -26,7 +26,7 @@
                         </div>
                         <div class="text-right">
                             <form action="{{ route('policy.create') }}">
-                                <button type="submit" class="btn btn-primary">Add Policy</button>
+                                <button type="submit" class="btn btn-outline-primary btn-fw">Add Policy</button>
                             </form>
                         </div>
                 </div>
@@ -37,7 +37,14 @@
                             <span aria-hidden="true"><i class="mdi mdi-close-circle"></i></span>
                         </button>
                     </div>
-                @endif
+                    @elseif(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show mt-2 mb-2" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><i class="mdi mdi-close-circle"></i></span>
+                        </button>
+                    </div>
+                    @endif
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
@@ -55,7 +62,6 @@
                                 @foreach ($policys as $key => $item)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $item->id }}</td>
                                         <td>{{ $item->policy_title}}</td>
                                         <td>{{ $item->policy_desc }}</td>
                                         <td><a href="{{$item->policy_link}}">{{$item->policy_link}}</a></td>
@@ -64,9 +70,9 @@
                                         @else
                                             <td>No Image</td>
                                         @endif
-                                        <td><a href="{{ route('policy.show', $item->id) }}" style="padding-top: 12px;"
+                                        {{-- <td><a href="{{ route('policy.show', $item->id) }}" style="padding-top: 12px;"
                                             type="button" class="btn btn-outline-primary btn-fw btn-icon display-block"><i
-                                                class="mdi mdi-eye"></i></a></td>
+                                                class="mdi mdi-eye"></i></a></td> --}}
                                     <td><a href="{{ route('policy.edit', $item->id) }}" style="padding-top: 12px;"
                                             type="button" class="btn btn-outline-success btn-fw btn-icon"><i
                                                 class="mdi mdi-table-edit"></i></a></td>

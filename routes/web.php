@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\{
 };
 use App\Http\Controllers\{
     Employeeclientside,
+    PermissionController,
     ProfileController
 };
 
@@ -33,6 +34,7 @@ Route::middleware('auth')->prefix('adminpanal')->group(function () {
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('employees', EmployeesController::class);
     Route::resource('policy', PolicyController::class);
+    Route::resource('permission', PermissionController::class);
     
 });
 
